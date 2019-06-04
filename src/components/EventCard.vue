@@ -1,30 +1,21 @@
 <template>
-  <router-link class="event-link" :to="{ name: 'event-show', params: { id: 1 } }">
+  <router-link class="event-link" :to="{ name: 'event-show', params: { id: event.id } }">
     <div class="event-card -shadow">
       <span class="eyebrow">{{ event.time }} on {{ event.date }}</span>
       <h4 class="title">{{ event.title }}</h4>
-      <span>{{ event.attendees.length }} attendees</span>
+      <BaseIcon name="users" width="25" height="25" >{{ event.attendees.length }} attendees</BaseIcon>
     </div>
   </router-link>
 </template>
 
 <script>
+import BaseIcon from "./BaseIcon";
 export default {
-  data(){
-    return {
-      event : {
-        id: 1,
-        title: 'Beach Cleanup',
-        date: 'Tuesday Aug 19, 2019',
-        time: '6:00',
-        attendees:[
-          { id: 'abc123', name: 'Adam' },
-          { id: 'def123', name: 'Gregg' }
-        ]
-      }
-    }
+  components: {BaseIcon},
+  props:{
+    event: Object
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
